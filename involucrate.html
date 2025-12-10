@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Involúcrate - Fundazoe</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .donation-card {
+            border-top: 5px solid var(--color-orange);
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(245, 124, 0, 0.15);
+        }
+        .concept {
+            text-transform: uppercase; letter-spacing: 2px; font-size: 14px;
+            font-weight: bold; margin-bottom: 10px; display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Logo"></a></div>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Inicio</a>
+            <a href="programas.html">Programas</a>
+            <a href="recursos.html">Recursos</a>
+            <a href="contacto.html" class="btn-cta">Pedir Ayuda</a>
+        </nav>
+    </header>
+
+    <section class="hero" style="background-color: var(--color-teal); background-image: none; height: 50vh;">
+        <div class="hero-content">
+            <h1>Tu aporte reescribe historias</h1>
+            <p>"La mies es mucha y los obreros pocos." Descubre cómo tus manos, tus recursos o tu influencia pueden acelerar la restauración.</p>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="grid-cards">
+            
+            <div class="card donation-card">
+                <span class="concept" style="color: var(--color-orange);">Sembrar</span>
+                <h2>Donaciones</h2>
+                <p>Tu donación no es un gasto, es una inversión en el Reino. Sostenemos terapias y ayuda social gracias a ti.</p>
+                <a href="contacto.html" class="btn btn-primary" style="margin-top: 20px;">Quiero Donar</a>
+            </div>
+
+            <div class="card" style="border-top-color: var(--color-teal);">
+                <span class="concept" style="color: var(--color-teal);">Estratégico</span>
+                <h2>Alianzas</h2>
+                <p>Buscamos iglesias, empresas y fundaciones para ampliar nuestro alcance. Si representas a una organización, hagamos equipo.</p>
+                <a href="contacto.html" class="btn btn-secondary" style="background:var(--color-teal); margin-top: 20px;">Contactar Alianza</a>
+            </div>
+
+            <div class="card" style="border-top-color: #333;">
+                <span class="concept" style="color: #333;">Servicio</span>
+                <h2>Voluntariado</h2>
+                <p>Ya sea con tu profesión (psicólogos, abogados) o con tu tiempo y oración, hay un lugar para ti en la familia.</p>
+                <a href="contacto.html" class="btn btn-secondary" style="border-color:#333; color:#333; margin-top: 20px;">Quiero Servir</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer><p>© 2025 Fundación Fundazoe.</p></footer>
+    <script src="script.js"></script>
+</body>
+</html>
