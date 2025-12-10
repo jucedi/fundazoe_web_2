@@ -1,0 +1,59 @@
+/* --- 1. FUENTES Y VARIABLES GLOBALES --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Nunito:wght@300;400;600;700&display=swap');
+
+:root {
+  --color-teal: #00897B;
+  --color-orange: #F57C00;
+  --color-dark: #333333;
+  --color-light: #F8F9FA;
+  --color-white: #FFFFFF;
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-nunito: 'Nunito', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    font-family: var(--font-nunito); 
+    color: var(--color-dark); 
+    line-height: 1.6; 
+    background-color: #fff; 
+    padding-top: 80px; /* Espacio para que el menú fijo no tape el contenido */
+}
+
+h1, h2, h3, h4 { font-family: var(--font-montserrat); color: var(--color-teal); margin-bottom: 1rem; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+
+/* --- 2. HEADER (MENÚ) --- */
+header {
+  background: var(--color-white);
+  border-bottom: 1px solid #eee;
+  padding: 10px 40px;
+  position: fixed;
+  top: 0; width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px; 
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo img { height: 50px; width: 50px; border-radius: 50%; object-fit: cover; }
+
+.nav-links { display: flex; gap: 20px; align-items: center; }
+.nav-links a { 
+    font-weight: 700; 
+    color: var(--color-teal); 
+    font-size: 16px; 
+    font-family: var(--font-montserrat);
+}
+.nav-links a:hover { color: var(--color-orange); }
+
+/* Botón destacado del menú */
+.btn-cta {
+  background: var(--color-orange);
+  color: white !important;
+  padding: 10px 2

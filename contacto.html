@@ -193,70 +193,10 @@
     <footer><p>© 2025 Fundación Fundazoe.</p></footer>
     <script src="script.js"></script>
 
-    <script>
-        // 1. TU CONFIGURACIÓN (La misma que usaste en el sembrador)
-        var firebaseConfig = {
-            apiKey: "AIzaSyC1hu_jiAx4JKU5QWOZUW6RVvlo4Td_sM4",
-            authDomain: "fundazoe-web2.firebaseapp.com",
-            projectId: "fundazoe-web2",
-            storageBucket: "fundazoe-web2.firebasestorage.app",
-            messagingSenderId: "1016512867168",
-            appId: "1:1016512867168:web:8b0d3108e85dee1fab4c05",
-            measurementId: "G-JW3ME3FF9Q"
-        };
-
-        // 2. INICIAR FIREBASE
-        firebase.initializeApp(firebaseConfig);
-        var db = firebase.firestore();
-
-        // 3. MANEJAR EL ENVÍO
-        var form = document.getElementById('contactForm');
-        var btn = document.getElementById('btnSubmit');
-        var statusDiv = document.getElementById('formStatus');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Evita que la página se recargue
-
-            // Desactivar botón mientras envía
-            btn.disabled = true;
-            btn.innerText = "Enviando...";
-            btn.style.background = "#ccc";
-
-            // Recoger datos
-            var datos = {
-                nombre: document.getElementById('nombre').value,
-                email: document.getElementById('email').value,
-                telefono: document.getElementById('telefono').value,
-                mensaje: document.getElementById('mensaje').value,
-                fecha: new Date() // Guardamos la fecha y hora
-            };
-
-            // Guardar en la colección 'solicitudes_ayuda'
-            db.collection("solicitudes_ayuda").add(datos)
-                .then(function() {
-                    // Éxito
-                    statusDiv.style.display = 'block';
-                    statusDiv.style.color = 'green';
-                    statusDiv.innerHTML = "✅ ¡Mensaje recibido! Nos pondremos en contacto contigo pronto.";
-                    form.reset(); // Limpiar formulario
-                    
-                    // Restaurar botón
-                    btn.innerText = "Mensaje Enviado";
-                })
-                .catch(function(error) {
-                    // Error
-                    console.error("Error al enviar:", error);
-                    statusDiv.style.display = 'block';
-                    statusDiv.style.color = 'red';
-                    statusDiv.innerHTML = "❌ Hubo un error al enviar. Por favor intenta de nuevo o escríbenos por WhatsApp.";
-                    
-                    // Restaurar botón para reintentar
-                    btn.disabled = false;
-                    btn.innerText = "Enviar Mensaje";
-                    btn.style.background = "var(--color-orange)";
-                });
-        });
-    </script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script defer src="js/main.js"></script>
+</body>
 </body>
 >>>>>>> 79fd3c0b18bdcd4211bd91d830afbf74dc12dade
 </html>
