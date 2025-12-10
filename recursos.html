@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -86,4 +87,94 @@
         });
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos - Fundazoe</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .article-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px 8px 0 0; margin-bottom: 15px; }
+        .article-cat { color: var(--color-orange); font-weight: bold; font-size: 0.8rem; text-transform: uppercase; }
+        .article-link { color: var(--color-teal); font-weight: bold; margin-top: 10px; display: inline-block; cursor: pointer;}
+        .article-link:hover { text-decoration: underline; }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Logo"></a></div>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Inicio</a>
+            <a href="programas.html">Programas</a>
+            <a href="recursos.html" style="color: var(--color-orange);">Recursos</a>
+            <a href="contacto.html" class="btn-cta">Pedir Ayuda</a>
+        </nav>
+    </header>
+
+    <section class="section" style="margin-top: 80px;">
+        <h1 style="text-align: center; margin-bottom: 40px;">Blog de Esperanza</h1>
+        <div id="articulos-container" class="grid-cards">
+            <p style="text-align:center; width:100%; color:#666;">⏳ Conectando con la base de datos...</p>
+        </div>
+    </section>
+
+    <footer><p>© 2025 Fundación Fundazoe.</p></footer>
+    <script src="script.js"></script>
+
+    <script>
+        // 1. TU CONFIGURACIÓN (La misma que funcionó en el sembrador)
+        var firebaseConfig = {
+            apiKey: "AIzaSyC1hu_jiAx4JKU5QWOZUW6RVvlo4Td_sM4",
+            authDomain: "fundazoe-web2.firebaseapp.com",
+            projectId: "fundazoe-web2",
+            storageBucket: "fundazoe-web2.firebasestorage.app",
+            messagingSenderId: "1016512867168",
+            appId: "1:1016512867168:web:8b0d3108e85dee1fab4c05",
+            measurementId: "G-JW3ME3FF9Q"
+        };
+
+        // 2. INICIAR
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+
+        // 3. CARGAR DATOS
+        var container = document.getElementById('articulos-container');
+
+        db.collection("articulos").get().then((querySnapshot) => {
+            if (querySnapshot.empty) {
+                container.innerHTML = '<p style="text-align:center;">No hay artículos publicados aún.</p>';
+            } else {
+                container.innerHTML = ''; // Limpiar mensaje de carga
+                querySnapshot.forEach((doc) => {
+                    var data = doc.data();
+                    // Importante: El enlace lleva a articulo.html con el ID
+                    var link = `articulo.html?id=${doc.id}`;
+                    
+                    var html = `
+                        <div class="card article-card" style="text-align: left; padding: 0;">
+                            <a href="${link}"><img src="${data.imagen}" alt="${data.titulo}"></a>
+                            <div style="padding: 20px;">
+                                <span class="article-cat">${data.categoria}</span>
+                                <h3 style="font-size: 1.2rem; margin: 10px 0;">${data.titulo}</h3>
+                                <p style="font-size: 0.9rem; color:#666;">${data.resumen}</p>
+                                <a href="${link}" class="article-link">Leer Artículo →</a>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            }
+        }).catch((error) => {
+            console.error("Error:", error);
+            container.innerHTML = `<p style="color:red; text-align:center;">Error de conexión: ${error.message}</p>`;
+        });
+    </script>
+</body>
+>>>>>>> 79fd3c0b18bdcd4211bd91d830afbf74dc12dade
 </html>

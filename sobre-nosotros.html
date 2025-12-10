@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -98,4 +99,106 @@
     <footer><p>© 2025 Fundación Fundazoe.</p></footer>
     <script src="script.js"></script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiénes Somos - Fundazoe</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para esta página */
+        .compass-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .compass-card {
+            background: white;
+            padding: 40px;
+            border-left: 6px solid var(--color-orange);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 0 12px 12px 0;
+        }
+        .compass-card h3 { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; }
+        .objective-item {
+            background: white; padding: 25px; border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px; transition: transform 0.2s;
+        }
+        .objective-item:hover { transform: translateX(10px); border-left: 4px solid var(--color-teal); }
+        .number { font-size: 1.5rem; color: var(--color-teal); font-weight: bold; margin-right: 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Logo"></a></div>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Inicio</a>
+            <a href="programas.html">Programas</a>
+            <a href="recursos.html">Recursos</a>
+            <a href="contacto.html" class="btn-cta">Pedir Ayuda</a>
+        </nav>
+    </header>
+
+    <section class="hero" style="background-image: linear-gradient(rgba(0, 137, 123, 0.9), rgba(0, 77, 64, 0.9)); height: 60vh;">
+        <div class="hero-content">
+            <h1>Más que una fundación, una familia de fe</h1>
+            <p>Conoce el corazón detrás de Fundazoe y nuestra pasión por restaurar lo que parecía perdido.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2>Nuestra Brújula</h2>
+            <div style="width: 60px; height: 4px; background: var(--color-orange); margin: 10px auto;"></div>
+        </div>
+
+        <div class="compass-grid">
+            <div class="compass-card">
+                <h3><span>🧭</span> Misión</h3>
+                <p style="font-style: italic; color: #555;">
+                    "Transformar vidas a través del amor y la verdad de JESUCRISTO, ser una luz de esperanza para quienes luchan contra las adicciones y la autodestrucción, por medio de programas basados en principios cristianos."
+                </p>
+            </div>
+
+            <div class="compass-card" style="border-left-color: var(--color-teal);">
+                <h3><span>🔭</span> Visión</h3>
+                <p style="font-style: italic; color: #555;">
+                    "Ser un referente en la transformación de vidas, no solo en nuestro entorno local, sino también fuera de nuestras fronteras, con el principal propósito de darle la gloria a nuestro SEÑOR JESÚS."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <h2 style="text-align: center; margin-bottom: 40px;">Nuestros Objetivos</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="objective-item">
+                <h3><span class="number">01.</span> Consejería con Propósito</h3>
+                <p>Ofrecer consejería individual y grupal desde una perspectiva bíblica para generar conciencia y decisiones.</p>
+            </div>
+            <div class="objective-item">
+                <h3><span class="number">02.</span> Planes Personalizados</h3>
+                <p>Desarrollar planes de acción por etapas para supervisar objetivos y evaluar resultados.</p>
+            </div>
+            <div class="objective-item">
+                <h3><span class="number">03.</span> Familia Terapéutica</h3>
+                <p>Capacitar a padres y tutores para ser el soporte y respuesta inmediata de apoyo.</p>
+            </div>
+            <div class="objective-item">
+                <h3><span class="number">04.</span> Prevención Activa</h3>
+                <p>Programas en escuelas y empresas para frenar la problemática antes de que inicie.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer><p>© 2025 Fundación Fundazoe.</p></footer>
+    <script src="script.js"></script>
+</body>
+>>>>>>> 79fd3c0b18bdcd4211bd91d830afbf74dc12dade
 </html>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -127,4 +128,135 @@
         });
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Fundazoe</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Logo"></a></div>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Inicio</a>
+            <a href="programas.html">Programas</a>
+            <a href="recursos.html">Recursos</a>
+            <a href="contacto.html" class="btn-cta">Pedir Ayuda</a>
+        </nav>
+    </header>
+
+    <div style="margin-top: 100px; padding-bottom: 60px;" class="section">
+        <div class="form-container">
+            <h1 style="text-align: center; color: var(--color-teal);">Estamos aquí para escucharte</h1>
+            <p style="text-align: center; margin-bottom: 30px; color: #666;">
+                Déjanos tus datos. Tu historia importa y queremos acompañarte.
+            </p>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="nombre" required placeholder="Tu nombre">
+                </div>
+
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="email" required placeholder="tucorreo@ejemplo.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Teléfono (Opcional)</label>
+                    <input type="tel" id="telefono" placeholder="Número de contacto">
+                </div>
+
+                <div class="form-group">
+                    <label>¿Cómo podemos ayudarte?</label>
+                    <textarea id="mensaje" rows="5" required placeholder="Cuéntanos brevemente tu situación..."></textarea>
+                </div>
+
+                <button type="submit" id="btnSubmit" class="btn-submit" style="padding: 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                    Enviar Mensaje
+                </button>
+            </form>
+            
+            <div id="formStatus" style="margin-top: 20px; text-align: center; display: none; font-weight: bold;"></div>
+        </div>
+    </div>
+
+    <footer><p>© 2025 Fundación Fundazoe.</p></footer>
+    <script src="script.js"></script>
+
+    <script>
+        // 1. TU CONFIGURACIÓN (La misma que usaste en el sembrador)
+        var firebaseConfig = {
+            apiKey: "AIzaSyC1hu_jiAx4JKU5QWOZUW6RVvlo4Td_sM4",
+            authDomain: "fundazoe-web2.firebaseapp.com",
+            projectId: "fundazoe-web2",
+            storageBucket: "fundazoe-web2.firebasestorage.app",
+            messagingSenderId: "1016512867168",
+            appId: "1:1016512867168:web:8b0d3108e85dee1fab4c05",
+            measurementId: "G-JW3ME3FF9Q"
+        };
+
+        // 2. INICIAR FIREBASE
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+
+        // 3. MANEJAR EL ENVÍO
+        var form = document.getElementById('contactForm');
+        var btn = document.getElementById('btnSubmit');
+        var statusDiv = document.getElementById('formStatus');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita que la página se recargue
+
+            // Desactivar botón mientras envía
+            btn.disabled = true;
+            btn.innerText = "Enviando...";
+            btn.style.background = "#ccc";
+
+            // Recoger datos
+            var datos = {
+                nombre: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                telefono: document.getElementById('telefono').value,
+                mensaje: document.getElementById('mensaje').value,
+                fecha: new Date() // Guardamos la fecha y hora
+            };
+
+            // Guardar en la colección 'solicitudes_ayuda'
+            db.collection("solicitudes_ayuda").add(datos)
+                .then(function() {
+                    // Éxito
+                    statusDiv.style.display = 'block';
+                    statusDiv.style.color = 'green';
+                    statusDiv.innerHTML = "✅ ¡Mensaje recibido! Nos pondremos en contacto contigo pronto.";
+                    form.reset(); // Limpiar formulario
+                    
+                    // Restaurar botón
+                    btn.innerText = "Mensaje Enviado";
+                })
+                .catch(function(error) {
+                    // Error
+                    console.error("Error al enviar:", error);
+                    statusDiv.style.display = 'block';
+                    statusDiv.style.color = 'red';
+                    statusDiv.innerHTML = "❌ Hubo un error al enviar. Por favor intenta de nuevo o escríbenos por WhatsApp.";
+                    
+                    // Restaurar botón para reintentar
+                    btn.disabled = false;
+                    btn.innerText = "Enviar Mensaje";
+                    btn.style.background = "var(--color-orange)";
+                });
+        });
+    </script>
+</body>
+>>>>>>> 79fd3c0b18bdcd4211bd91d830afbf74dc12dade
 </html>
