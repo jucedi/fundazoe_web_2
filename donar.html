@@ -1,16 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donar - Fundazoe</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <style>
         /* Variables Locales */
@@ -21,13 +21,13 @@
             --local-light-bg: #F8F9FA;
         }
 
-        /* 1. HERO ESPECÍFICO */
+        /* 1. HERO ESPECÍFICO DE DONAR */
         .donate-hero {
             text-align: center;
-            padding: 120px 24px 80px; /* Ajuste para el header fijo */
+            padding: 120px 24px 80px;
             background-color: var(--local-teal);
             color: white;
-            border-radius: 0 0 20px 20px; /* Borde redondeado abajo característico */
+            border-radius: 0 0 20px 20px;
             margin-bottom: 60px;
         }
 
@@ -36,7 +36,7 @@
             font-size: 36px;
             font-weight: bold;
             margin-bottom: 20px;
-            color: white; /* Forzar blanco */
+            color: white;
         }
 
         .donate-hero p {
@@ -86,7 +86,6 @@
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             text-align: center;
-            /* Transición suave */
             transition: transform 0.3s ease;
         }
         
@@ -94,7 +93,7 @@
             transform: translateY(-5px);
         }
 
-        /* Bordes superiores de colores */
+        /* Bordes superiores */
         .card-orange { border-top: 5px solid var(--local-orange); }
         .card-teal { border-top: 5px solid var(--local-teal); }
 
@@ -117,7 +116,7 @@
             background: var(--local-light-bg);
             padding: 20px;
             border-radius: 8px;
-            text-align: left; /* Alineado a la izquierda como el original */
+            text-align: left;
         }
 
         .bank-label {
@@ -142,12 +141,8 @@
         
         .bank-data.last { margin-bottom: 0; }
 
-        /* Estilos específicos para billeteras (centrado) */
-        .wallet-box {
-            text-align: center;
-        }
+        .wallet-box { text-align: center; }
 
-        /* Placeholder QR */
         .qr-placeholder {
             width: 150px;
             height: 150px;
@@ -188,7 +183,7 @@
         .whatsapp-btn {
             display: inline-block;
             padding: 12px 30px;
-            background-color: #25D366; /* Verde WhatsApp Oficial */
+            background-color: #25D366;
             color: white;
             border-radius: 50px;
             text-decoration: none;
@@ -198,20 +193,17 @@
             transition: background 0.3s;
         }
 
-        .whatsapp-btn:hover {
-            background-color: #128C7E;
-        }
+        .whatsapp-btn:hover { background-color: #128C7E; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">
-            <a href="index.html"><img src="images/logo.png" alt="Logo"></a>
-        </div>
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Logo"></a></div>
         <div class="hamburger" onclick="toggleMenu()">☰</div>
         <nav class="nav-links" id="navLinks">
             <a href="index.html">Inicio</a>
+            <a href="sobre-nosotros.html">Nosotros</a>
             <a href="programas.html">Programas</a>
             <a href="recursos.html">Recursos</a>
             <a href="involucrate.html">Involúcrate</a>
@@ -259,11 +251,12 @@
                 
                 <div class="qr-placeholder">
                     (Código QR Aquí)
-                    </div>
+                </div>
 
                 <div class="bank-info-box wallet-box">
                     <span class="bank-label">Nequi / Daviplata</span>
-                    <span class="bank-data last">300 000 0000</span> </div>
+                    <span class="bank-data last">300 000 0000</span> 
+                </div>
             </div>
 
         </div>
@@ -287,10 +280,10 @@
                 <p>Transformando vidas con principios eternos.</p>
             </div>
             <div>
-                <h4>Explora</h4>
+                <h4>Enlaces</h4>
                 <a href="sobre-nosotros.html">Quiénes Somos</a>
                 <a href="programas.html">Programas</a>
-                <a href="recursos.html">Blog</a>
+                <a href="recursos.html">Recursos</a>
             </div>
             <div>
                 <h4>Contacto</h4>
@@ -304,316 +297,7 @@
     </footer>
 
     <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-<script defer src="js/main.js"></script>
-</body>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donar - Fundazoe</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="styles.css">
-
-    <style>
-        /* Variables Locales */
-        :root {
-            --local-teal: #00897B;
-            --local-orange: #F57C00;
-            --local-dark: #333333;
-            --local-light-bg: #F8F9FA;
-        }
-
-        /* 1. HERO ESPECÍFICO */
-        .donate-hero {
-            text-align: center;
-            padding: 120px 24px 80px; /* Ajuste para el header fijo */
-            background-color: var(--local-teal);
-            color: white;
-            border-radius: 0 0 20px 20px; /* Borde redondeado abajo característico */
-            margin-bottom: 60px;
-        }
-
-        .donate-hero h1 {
-            font-family: var(--font-montserrat);
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: white; /* Forzar blanco */
-        }
-
-        .donate-hero p {
-            font-family: var(--font-nunito);
-            font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-            opacity: 0.95;
-        }
-
-        /* 2. CONTENEDOR PRINCIPAL */
-        .donate-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px 60px;
-        }
-
-        .section-title {
-            font-family: var(--font-montserrat);
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--local-dark);
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #666;
-            font-family: var(--font-nunito);
-        }
-
-        /* 3. GRID RESPONSIVO */
-        .donate-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        /* 4. TARJETAS (CARDS) */
-        .donate-card {
-            background-color: #FFFFFF;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            text-align: center;
-            /* Transición suave */
-            transition: transform 0.3s ease;
-        }
-        
-        .donate-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Bordes superiores de colores */
-        .card-orange { border-top: 5px solid var(--local-orange); }
-        .card-teal { border-top: 5px solid var(--local-teal); }
-
-        .card-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .card-title {
-            color: var(--local-teal);
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-family: var(--font-montserrat);
-        }
-
-        /* 5. DATOS BANCARIOS (Caja interna) */
-        .bank-info-box {
-            background: var(--local-light-bg);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: left; /* Alineado a la izquierda como el original */
-        }
-
-        .bank-label {
-            font-size: 14px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            display: block;
-            font-family: var(--font-nunito);
-            font-weight: 600;
-        }
-
-        .bank-data {
-            font-size: 20px;
-            color: var(--local-dark);
-            font-weight: bold;
-            font-family: var(--font-montserrat);
-            margin-bottom: 20px;
-            display: block;
-        }
-        
-        .bank-data.last { margin-bottom: 0; }
-
-        /* Estilos específicos para billeteras (centrado) */
-        .wallet-box {
-            text-align: center;
-        }
-
-        /* Placeholder QR */
-        .qr-placeholder {
-            width: 150px;
-            height: 150px;
-            background: #EEE;
-            margin: 0 auto 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            color: #AAA;
-            font-family: var(--font-nunito);
-            border: 2px dashed #ccc;
-        }
-
-        /* 6. SECCIÓN CERTIFICADO */
-        .certificate-section {
-            background-color: var(--local-light-bg);
-            padding: 40px;
-            border-radius: 16px;
-            text-align: center;
-        }
-
-        .certificate-title {
-            font-family: var(--font-montserrat);
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--local-dark);
-            margin-bottom: 15px;
-        }
-
-        .certificate-text {
-            font-family: var(--font-nunito);
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 25px;
-        }
-
-        .whatsapp-btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: #25D366; /* Verde WhatsApp Oficial */
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-family: var(--font-montserrat);
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
-            transition: background 0.3s;
-        }
-
-        .whatsapp-btn:hover {
-            background-color: #128C7E;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo">
-            <a href="index.html"><img src="images/logo.png" alt="Logo"></a>
-        </div>
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
-        <nav class="nav-links" id="navLinks">
-            <a href="index.html">Inicio</a>
-            <a href="programas.html">Programas</a>
-            <a href="recursos.html">Recursos</a>
-            <a href="involucrate.html">Involúcrate</a>
-            <a href="contacto.html" class="btn-cta">Pedir Ayuda</a>
-        </nav>
-    </header>
-
-    <section class="donate-hero">
-        <h1>Tu generosidad transforma vidas</h1>
-        <p>
-            Cada aporte, grande o pequeño, nos permite mantener las puertas abiertas, ofrecer terapias a bajo costo y llevar alimentos a quienes inician su proceso de restauración.
-        </p>
-    </section>
-
-    <div class="donate-container">
-        
-        <h2 class="section-title">Canales de Donación</h2>
-        <p class="section-subtitle">Elige el medio que sea más fácil para ti.</p>
-
-        <div class="donate-grid">
-            
-            <div class="donate-card card-orange">
-                <span class="card-icon">🏦</span>
-                <h3 class="card-title">Cuenta Bancaria</h3>
-                
-                <div class="bank-info-box">
-                    <span class="bank-label">Banco</span>
-                    <span class="bank-data">Bancolombia</span>
-                    
-                    <span class="bank-label">Tipo de Cuenta</span>
-                    <span class="bank-data">Ahorros</span>
-                    
-                    <span class="bank-label">Número de Cuenta</span>
-                    <span class="bank-data">000-000000-00</span> <span class="bank-label">A nombre de</span>
-                    <span class="bank-data last">Fundación Fundazoe</span>
-                </div>
-                <p style="font-size: 14px; margin-top: 15px; color: #888;">NIT: 900.000.000-0</p>
-            </div>
-
-            <div class="donate-card card-teal">
-                <span class="card-icon">📱</span>
-                <h3 class="card-title">Billeteras Digitales</h3>
-                
-                <p style="margin-bottom: 20px; color: #555;">Escanea el código QR o usa el número celular.</p>
-                
-                <div class="qr-placeholder">
-                    (Código QR Aquí)
-                    </div>
-
-                <div class="bank-info-box wallet-box">
-                    <span class="bank-label">Nequi / Daviplata</span>
-                    <span class="bank-data last">300 000 0000</span> </div>
-            </div>
-
-        </div>
-
-        <div class="certificate-section">
-            <h3 class="certificate-title">¿Necesitas certificado de donación?</h3>
-            <p class="certificate-text">
-                Escríbenos enviando tu comprobante y tus datos fiscales. Te enviaremos el certificado tributario correspondiente.
-            </p>
-            <a href="https://wa.me/573000000000" target="_blank" class="whatsapp-btn">
-                Enviar Comprobante por WhatsApp
-            </a>
-        </div>
-
-    </div>
-
-    <footer>
-        <div class="footer-grid">
-            <div>
-                <h3 style="color: var(--local-orange);">Fundazoe</h3>
-                <p>Transformando vidas con principios eternos.</p>
-            </div>
-            <div>
-                <h4>Explora</h4>
-                <a href="sobre-nosotros.html">Quiénes Somos</a>
-                <a href="programas.html">Programas</a>
-                <a href="recursos.html">Blog</a>
-            </div>
-            <div>
-                <h4>Contacto</h4>
-                <a href="contacto.html" style="color: var(--local-orange); font-weight: bold;">Contáctanos aquí</a>
-                <p>+57 300 000 0000</p>
-            </div>
-        </div>
-        <div style="margin-top: 40px; border-top: 1px solid #37474F; padding-top: 20px; text-align: center; color: #546E7A; font-size: 14px;">
-            <p>© 2025 Fundación Fundazoe. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script defer src="js/main.js"></script>
 </body>
 </html>
-

@@ -1,202 +1,101 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Fundazoe</title>
-    <link rel="stylesheet" href="styles.css">
-    
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-</head>
-<body>
-
-    <header>
-        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Logo"></a></div>
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
-        <nav class="nav-links" id="navLinks">
-            <a href="index.html">Inicio</a>
-            <a href="programas.html">Programas</a>
-            <a href="recursos.html">Recursos</a>
-            <a href="contacto.html" class="btn-cta">Pedir Ayuda</a>
-        </nav>
-    </header>
-
-    <div style="margin-top: 100px; padding-bottom: 60px;" class="section">
-        <div class="form-container">
-            <h1 style="text-align: center; color: var(--color-teal);">Estamos aquí para escucharte</h1>
-            <p style="text-align: center; margin-bottom: 30px; color: #666;">
-                Déjanos tus datos. Tu historia importa y queremos acompañarte.
-            </p>
-            
-            <form id="contactForm">
-                <div class="form-group">
-                    <label>Nombre Completo</label>
-                    <input type="text" id="nombre" required placeholder="Tu nombre">
-                </div>
-
-                <div class="form-group">
-                    <label>Correo Electrónico</label>
-                    <input type="email" id="email" required placeholder="tucorreo@ejemplo.com">
-                </div>
-
-                <div class="form-group">
-                    <label>Teléfono (Opcional)</label>
-                    <input type="tel" id="telefono" placeholder="Número de contacto">
-                </div>
-
-                <div class="form-group">
-                    <label>¿Cómo podemos ayudarte?</label>
-                    <textarea id="mensaje" rows="5" required placeholder="Cuéntanos brevemente tu situación..."></textarea>
-                </div>
-
-                <button type="submit" id="btnSubmit" class="btn-submit" style="padding: 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
-                    Enviar Mensaje
-                </button>
-            </form>
-            
-            <div id="formStatus" style="margin-top: 20px; text-align: center; display: none; font-weight: bold;"></div>
-        </div>
-    </div>
-
-    <footer><p>© 2025 Fundación Fundazoe.</p></footer>
-    <script src="script.js"></script>
-
-    <script>
-        // 1. TU CONFIGURACIÓN (La misma que usaste en el sembrador)
-        var firebaseConfig = {
-            apiKey: "AIzaSyC1hu_jiAx4JKU5QWOZUW6RVvlo4Td_sM4",
-            authDomain: "fundazoe-web2.firebaseapp.com",
-            projectId: "fundazoe-web2",
-            storageBucket: "fundazoe-web2.firebasestorage.app",
-            messagingSenderId: "1016512867168",
-            appId: "1:1016512867168:web:8b0d3108e85dee1fab4c05",
-            measurementId: "G-JW3ME3FF9Q"
-        };
-
-        // 2. INICIAR FIREBASE
-        firebase.initializeApp(firebaseConfig);
-        var db = firebase.firestore();
-
-        // 3. MANEJAR EL ENVÍO
-        var form = document.getElementById('contactForm');
-        var btn = document.getElementById('btnSubmit');
-        var statusDiv = document.getElementById('formStatus');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Evita que la página se recargue
-
-            // Desactivar botón mientras envía
-            btn.disabled = true;
-            btn.innerText = "Enviando...";
-            btn.style.background = "#ccc";
-
-            // Recoger datos
-            var datos = {
-                nombre: document.getElementById('nombre').value,
-                email: document.getElementById('email').value,
-                telefono: document.getElementById('telefono').value,
-                mensaje: document.getElementById('mensaje').value,
-                fecha: new Date() // Guardamos la fecha y hora
-            };
-
-            // Guardar en la colección 'solicitudes_ayuda'
-            db.collection("solicitudes_ayuda").add(datos)
-                .then(function() {
-                    // Éxito
-                    statusDiv.style.display = 'block';
-                    statusDiv.style.color = 'green';
-                    statusDiv.innerHTML = "✅ ¡Mensaje recibido! Nos pondremos en contacto contigo pronto.";
-                    form.reset(); // Limpiar formulario
-                    
-                    // Restaurar botón
-                    btn.innerText = "Mensaje Enviado";
-                })
-                .catch(function(error) {
-                    // Error
-                    console.error("Error al enviar:", error);
-                    statusDiv.style.display = 'block';
-                    statusDiv.style.color = 'red';
-                    statusDiv.innerHTML = "❌ Hubo un error al enviar. Por favor intenta de nuevo o escríbenos por WhatsApp.";
-                    
-                    // Restaurar botón para reintentar
-                    btn.disabled = false;
-                    btn.innerText = "Enviar Mensaje";
-                    btn.style.background = "var(--color-orange)";
-                });
-        });
-    </script>
-</body>
-=======
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto - Fundazoe</title>
-    <link rel="stylesheet" href="styles.css">
-    
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-</head>
-<body>
-
-    <header>
-        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Logo"></a></div>
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
-        <nav class="nav-links" id="navLinks">
-            <a href="index.html">Inicio</a>
-            <a href="programas.html">Programas</a>
-            <a href="recursos.html">Recursos</a>
-            <a href="contacto.html" class="btn-cta">Pedir Ayuda</a>
-        </nav>
-    </header>
-
-    <div style="margin-top: 100px; padding-bottom: 60px;" class="section">
-        <div class="form-container">
-            <h1 style="text-align: center; color: var(--color-teal);">Estamos aquí para escucharte</h1>
-            <p style="text-align: center; margin-bottom: 30px; color: #666;">
-                Déjanos tus datos. Tu historia importa y queremos acompañarte.
-            </p>
-            
-            <form id="contactForm">
-                <div class="form-group">
-                    <label>Nombre Completo</label>
-                    <input type="text" id="nombre" required placeholder="Tu nombre">
-                </div>
-
-                <div class="form-group">
-                    <label>Correo Electrónico</label>
-                    <input type="email" id="email" required placeholder="tucorreo@ejemplo.com">
-                </div>
-
-                <div class="form-group">
-                    <label>Teléfono (Opcional)</label>
-                    <input type="tel" id="telefono" placeholder="Número de contacto">
-                </div>
-
-                <div class="form-group">
-                    <label>¿Cómo podemos ayudarte?</label>
-                    <textarea id="mensaje" rows="5" required placeholder="Cuéntanos brevemente tu situación..."></textarea>
-                </div>
-
-                <button type="submit" id="btnSubmit" class="btn-submit" style="padding: 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
-                    Enviar Mensaje
-                </button>
-            </form>
-            
-            <div id="formStatus" style="margin-top: 20px; text-align: center; display: none; font-weight: bold;"></div>
-        </div>
-    </div>
-
-    <footer><p>© 2025 Fundación Fundazoe.</p></footer>
-    <script src="script.js"></script>
-
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/styles.css">
     <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-<script defer src="js/main.js"></script>
-</body>
-</body>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script defer src="js/main.js"></script>
+</head>
+<body>
 
+    <header>
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Logo"></a></div>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Inicio</a>
+            <a href="programas.html">Programas</a>
+            <a href="recursos.html">Recursos</a>
+            <a href="involucrate.html">Involúcrate</a>
+            <a href="contacto.html" class="btn-cta">Pedir Ayuda</a>
+        </nav>
+    </header>
+
+    <div class="section" style="margin-top: 40px;">
+        <h1 style="text-align: center; margin-bottom: 10px;">Hablemos</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 40px;">Estamos listos para escucharte y caminar contigo.</p>
+
+        <div class="contact-layout">
+            
+            <div class="contact-info-box">
+                <h3 style="color: white; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 15px;">Información de Contacto</h3>
+                
+                <div class="contact-info-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <p>Calle Principal #123<br>Bucaramanga, Santander</p>
+                </div>
+
+                <div class="contact-info-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <p>+57 300 123 4567</p>
+                </div>
+
+                <div class="contact-info-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <p>contacto@fundazoe.org</p>
+                </div>
+
+                <div style="margin-top: 30px; background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px;">
+                    <h4 style="color: var(--color-orange); margin-bottom: 5px;">Horarios</h4>
+                    <p style="font-size: 0.9rem;">Lunes - Viernes: 8:00 AM - 5:00 PM</p>
+                </div>
+            </div>
+
+            <div class="form-card-modern">
+                <h3 style="margin-bottom: 20px;">Envíanos un mensaje</h3>
+                <form id="contactForm">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="nombre" required placeholder="Tu nombre">
+
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="email" required placeholder="tucorreo@ejemplo.com">
+
+                    <label>Teléfono</label>
+                    <input type="tel" id="telefono" placeholder="Número de contacto">
+
+                    <label>Mensaje</label>
+                    <textarea id="mensaje" rows="4" required placeholder="¿Cómo podemos ayudarte?"></textarea>
+
+                    <button type="submit" id="btnSubmit">Enviar Mensaje</button>
+                </form>
+                <div id="formStatus" style="margin-top: 15px; text-align: center; font-weight: bold;"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h3 style="color: var(--color-orange);">Fundazoe</h3>
+                <p>Transformando vidas con principios eternos.</p>
+            </div>
+            <div>
+                <h4>Enlaces</h4>
+                <a href="programas.html">Programas</a>
+                <a href="recursos.html">Recursos</a>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <p>+57 300 000 0000</p>
+            </div>
+        </div>
+        <div style="margin-top: 40px; border-top: 1px solid #37474F; padding-top: 20px; text-align: center; font-size: 14px;">
+            <p>© 2025 Fundación Fundazoe.</p>
+        </div>
+    </footer>
+</body>
 </html>

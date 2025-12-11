@@ -19,7 +19,6 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // --- 2. LÓGICA GLOBAL (MENÚ MÓVIL) ---
-// Hacemos la función accesible globalmente (window) para el onclick del HTML
 window.toggleMenu = function() {
     const navLinks = document.getElementById("navLinks");
     if (navLinks.style.display === "flex") {
@@ -32,7 +31,7 @@ window.toggleMenu = function() {
 // --- 3. CONTROLADORES DE DATOS (DOM READY) ---
 document.addEventListener('DOMContentLoaded', () => {
     
-    // A. MÓDULO DE CONTACTO (Solo si existe el formulario en la página)
+    // A. MÓDULO DE CONTACTO
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
@@ -40,55 +39,47 @@ document.addEventListener('DOMContentLoaded', () => {
             const btnSubmit = document.getElementById('btnSubmit');
             const formStatus = document.getElementById('formStatus');
             
-            // UI: Estado Cargando
             const originalBtnText = btnSubmit.innerText;
             btnSubmit.innerText = "Enviando...";
             btnSubmit.disabled = true;
 
             try {
-                // Recolectar datos
                 const nombre = document.getElementById('nombre').value;
                 const email = document.getElementById('email').value;
                 const telefono = document.getElementById('telefono').value;
                 const mensaje = document.getElementById('mensaje').value;
 
-                // Enviar a Firestore
                 await db.collection("solicitudes_ayuda").add({
-                    nombre,
-                    email,
-                    telefono,
-                    mensaje,
-                    fecha: new Date() // Timestamp del servidor
+                    nombre, email, telefono, mensaje,
+                    fecha: new Date()
                 });
 
-                // UI: Éxito
                 formStatus.style.color = "green";
                 formStatus.innerText = "¡Mensaje enviado con éxito!";
                 contactForm.reset();
 
             } catch (error) {
-                console.error("Error al enviar formulario:", error);
+                console.error("Error:", error);
                 formStatus.style.color = "red";
-                formStatus.innerText = "Hubo un error al enviar el mensaje. Intenta nuevamente.";
+                formStatus.innerText = "Error al enviar. Intenta nuevamente.";
             } finally {
-                // Restaurar botón
                 btnSubmit.innerText = originalBtnText;
                 btnSubmit.disabled = false;
             }
         });
     }
 
-    // B. MÓDULO DE PROGRAMAS (Solo si existe el contenedor)
+    // B. MÓDULO DE PROGRAMAS
     const programasContainer = document.getElementById('programas-container');
     if (programasContainer) {
         db.collection("programas").orderBy("orden").get().then((querySnapshot) => {
             let htmlContent = '';
             querySnapshot.forEach((doc) => {
                 const data = doc.data();
-                // Construcción de la tarjeta (Template Literal)
                 htmlContent += `
                     <div class="card">
-                        <h3>${data.nombre}</h3>
+                        ${data.imagen ? `<img src="${data.imagen}" alt="${data.titulo}" style="width:100%; height:200px; object-fit:cover;">` : ''}
+                        <h3>${data.titulo}</h3> 
                         <p>${data.descripcion}</p>
                     </div>
                 `;
@@ -100,20 +91,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // C. MÓDULO DE RECURSOS (LISTADO DE ARTÍCULOS)
+    // C. MÓDULO DE RECURSOS (BLOG - LISTADO)
     const articulosContainer = document.getElementById('articulos-container');
     if (articulosContainer) {
         db.collection("articulos").get().then((querySnapshot) => {
             let htmlContent = '';
             querySnapshot.forEach((doc) => {
                 const data = doc.data();
-                // Nota el enlace dinámico: articulo.html?id=${doc.id}
                 htmlContent += `
                     <div class="card article-card">
-                        ${data.imagen ? `<img src="${data.imagen}" alt="${data.titulo}" style="width:100%; border-radius: 8px 8px 0 0;">` : ''}
-                        <div style="padding: 15px;">
+                        ${data.imagen ? `<img src="${data.imagen}" alt="${data.titulo}" style="width:100%; height:200px; object-fit:cover;">` : ''}
+                        <div style="padding: 15px; flex-grow:1; display:flex; flex-direction:column;">
+                            <span style="color:var(--color-orange); font-size:0.8rem; font-weight:bold; text-transform:uppercase;">${data.categoria || 'Blog'}</span>
                             <h3>${data.titulo}</h3>
-                            <p>${data.resumen || ''}</p>
+                            <p style="flex-grow:1;">${data.resumen || ''}</p>
                             <a href="articulo.html?id=${doc.id}" class="btn-leermas">Leer más</a>
                         </div>
                     </div>
@@ -126,9 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // D. MÓDULO DE DETALLE DE ARTÍCULO (Solo en articulo.html)
+    // D. MÓDULO DE DETALLE DE ARTÍCULO (CORREGIDO Y COMPLETO)
     const mainContent = document.getElementById('main-content');
-    // Verificamos si estamos en la página de detalle buscando el parámetro 'id'
     const urlParams = new URLSearchParams(window.location.search);
     const docId = urlParams.get('id');
 
@@ -136,21 +126,50 @@ document.addEventListener('DOMContentLoaded', () => {
         db.collection("articulos").doc(docId).get().then((doc) => {
             if (doc.exists) {
                 const data = doc.data();
+                
+                // Formateo de fecha simple si existe
+                let fechaTexto = '';
+                if (data.fecha) {
+                    // Si es un Timestamp de Firebase
+                    if (data.fecha.toDate) {
+                        fechaTexto = data.fecha.toDate().toLocaleDateString();
+                    } else {
+                        fechaTexto = data.fecha; // Si es string
+                    }
+                }
+
+                // Búsqueda del contenido en varios campos posibles para evitar "undefined"
+                const contenidoReal = data.contenido || data.cuerpo || data.body || '<p>Contenido no disponible.</p>';
+
                 mainContent.innerHTML = `
-                    <h1>${data.titulo}</h1>
-                    ${data.imagen ? `<img src="${data.imagen}" alt="${data.titulo}" style="max-width:100%; margin: 20px 0;">` : ''}
-                    <div class="contenido-articulo">
-                        ${data.contenido} 
+                    <div style="text-align:center; max-width:800px; margin:0 auto;">
+                        <span style="background:var(--color-orange); color:white; padding:5px 15px; border-radius:20px; font-size:0.9rem; font-weight:bold;">
+                            ${data.categoria || 'Artículos'}
+                        </span>
+                        <h1 style="color:var(--color-teal); margin-top:15px; font-size:2.5rem;">${data.titulo}</h1>
+                        <p style="color:#666; font-style:italic;">
+                            Por ${data.autor || 'Fundazoe'} • ${fechaTexto}
+                        </p>
+                        
+                        ${data.imagen ? `<img src="${data.imagen}" alt="${data.titulo}" style="width:100%; border-radius:12px; margin: 30px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">` : ''}
                     </div>
-                    <br>
-                    <a href="recursos.html" class="btn-volver">← Volver a Recursos</a>
+
+                    <div class="contenido-articulo" style="max-width:800px; margin:0 auto; line-height:1.8; font-size:1.1rem; color:#333;">
+                        ${data.resumen ? `<p style="font-weight:bold; font-size:1.2rem; color:var(--color-teal); border-left:4px solid var(--color-orange); padding-left:15px; margin-bottom:30px;">${data.resumen}</p>` : ''}
+                        
+                        ${contenidoReal} 
+                    </div>
+
+                    <div style="text-align:center; margin-top:60px; padding-top:20px; border-top:1px solid #eee;">
+                        <a href="recursos.html" class="btn-volver" style="text-decoration:none;">← Volver a Recursos</a>
+                    </div>
                 `;
             } else {
-                mainContent.innerHTML = "<h2>Artículo no encontrado</h2><p>Lo sentimos, el recurso que buscas no existe.</p>";
+                mainContent.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>Artículo no encontrado</h2>";
             }
         }).catch((error) => {
-            console.error("Error obteniendo artículo:", error);
-            mainContent.innerHTML = "<p>Error al cargar el contenido.</p>";
+            console.error("Error:", error);
+            mainContent.innerHTML = "<p style='text-align:center; margin-top:50px;'>Error al cargar el contenido.</p>";
         });
     }
 });

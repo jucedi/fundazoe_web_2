@@ -17,8 +17,8 @@ body {
     font-family: var(--font-nunito); 
     color: var(--color-dark); 
     line-height: 1.6; 
-    background-color: #fff; 
-    padding-top: 80px; /* Espacio para el menú fijo */
+    background-color: #f9f9f9; 
+    padding-top: 80px; /* Espacio vital para que el menú fijo no tape nada */
 }
 
 h1, h2, h3, h4 { font-family: var(--font-montserrat); color: var(--color-teal); margin-bottom: 1rem; }
@@ -32,7 +32,7 @@ header {
   border-bottom: 1px solid #eee;
   padding: 10px 40px;
   position: fixed;
-  top: 0; width: 100%;
+  top: 0; left: 0; width: 100%;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
@@ -41,180 +41,160 @@ header {
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-.logo img { height: 50px; width: 50px; border-radius: 50%; object-fit: cover; }
+.logo a { display: flex; align-items: center; }
+.logo img { 
+    height: 60px; width: 60px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid var(--color-teal); 
+    padding: 2px; 
+    background-color: white; 
+    transition: transform 0.3s ease;
+}
+.logo img:hover { transform: scale(1.05); }
 
 .nav-links { display: flex; gap: 20px; align-items: center; }
 .nav-links a { 
-    font-weight: 700; 
-    color: var(--color-teal); 
-    font-size: 16px; 
-    font-family: var(--font-montserrat);
+    font-weight: 700; color: var(--color-teal); 
+    font-size: 16px; font-family: var(--font-montserrat);
 }
 .nav-links a:hover { color: var(--color-orange); }
 
-/* Botón destacado del menú */
 .btn-cta {
-  background: var(--color-orange);
-  color: white !important;
-  padding: 10px 20px;
-  border-radius: 20px;
-  transition: transform 0.2s;
+  background: var(--color-orange); color: white !important;
+  padding: 10px 20px; border-radius: 20px; transition: transform 0.2s;
 }
 .btn-cta:hover { background: #e66f00; transform: translateY(-2px); }
 
-/* Menú Móvil (Hamburguesa) */
 .hamburger { display: none; font-size: 28px; cursor: pointer; color: var(--color-teal); }
 
-/* --- 3. ESTILOS GENERALES DE SECCIONES --- */
+/* --- 3. SECCIONES Y GRID --- */
 .section { padding: 60px 24px; max-width: 1200px; margin: 0 auto; }
 .bg-light { background-color: var(--color-light); }
 
-/* --- 4. CONTENEDORES DINÁMICOS (GRID) --- */
-/* Esto arregla que las tarjetas se vean ordenadas */
-.grid-cards, #programas-container, #articulos-container { 
+.grid-cards, #programas-container, #articulos-container, .donate-grid, .compass-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 30px; 
-    margin-top: 40px; 
+    gap: 30px; margin-top: 40px; 
 }
 
-/* --- 5. TARJETAS (CARDS) --- */
-/* Esto le da estilo a las tarjetas generadas por JS */
-.card {
-    background-color: var(--color-white);
-    border: 1px solid #eee;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.card h3 {
-    padding: 20px 20px 10px 20px;
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-}
-
-.card p {
-    padding: 0 20px 20px 20px;
-    font-size: 0.95rem;
-    color: #555;
-    flex-grow: 1; 
-}
-
-/* Botones dentro de las tarjetas */
-.btn-leermas, .btn-volver, .btn-primary, .btn-secondary {
-    display: inline-block;
-    margin: 0 20px 20px 20px;
-    padding: 10px 20px;
-    background-color: var(--color-teal);
-    color: white;
+/* --- 4. HERO CORREGIDO (SIN PROBLEMAS VISUALES) --- */
+.hero {
+    position: relative;
+    /* Imagen de fondo con capa oscura */
+    background-image: linear-gradient(rgba(0, 50, 70, 0.7), rgba(0, 20, 40, 0.85)), 
+                      url('https://images.unsplash.com/photo-1503431760783-91f2569f6802?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;       /* Cubre todo el área */
+    background-position: center;  /* Centrado siempre */
+    background-repeat: no-repeat; /* No repetir */
+    
+    color: var(--color-white);
     text-align: center;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-}
-.btn-primary { background-color: var(--color-orange); }
-
-.btn-leermas:hover, .btn-volver:hover {
-    background-color: #00695c;
-    color: white;
-}
-
-/* --- 6. ESTILOS DE FORMULARIO (CONTACTO) --- */
-form {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: var(--color-dark);
-}
-
-form input, form textarea, form select {
+    
+    /* Altura controlada */
+    min-height: 60vh;             
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    
+    /* IMPORTANTE: Quitamos márgenes negativos para evitar cruces */
     width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-family: var(--font-nunito);
-    font-size: 1rem;
 }
 
+.hero h1 {
+    color: var(--color-white) !important;
+    font-size: 3rem; font-weight: 800; line-height: 1.2;
+    max-width: 900px; margin: 0 auto 20px auto;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+.hero p {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.2rem; max-width: 700px; margin: 0 auto 40px auto;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+.hero span { color: var(--color-orange); text-shadow: 0 0 20px rgba(245, 124, 0, 0.6); }
+
+/* --- 5. TARJETAS --- */
+.card, .donate-card, .compass-card, .impact-card {
+    background: white; border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0; overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; flex-direction: column;
+}
+.card:hover, .impact-card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); }
+
+.impact-card { padding: 2rem; text-align: center; justify-content: center; align-items: center; }
+.icon-circle {
+    width: 64px; height: 64px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem; margin-left: auto; margin-right: auto;
+}
+.icon-teal { background-color: rgba(0, 137, 123, 0.1); color: var(--color-teal); }
+.icon-orange { background-color: rgba(245, 124, 0, 0.1); color: var(--color-orange); }
+
+.card h3, .impact-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; padding: 0 15px; }
+.card p, .impact-card p { color: #666; font-size: 0.95rem; padding: 0 15px 20px 15px; }
+
+/* Botones */
+.btn-primary, .btn-secondary, .btn-leermas, .btn-volver, .whatsapp-btn {
+    display: inline-block; padding: 12px 30px; border-radius: 50px;
+    font-weight: bold; text-align: center; margin: 10px;
+    border: none; cursor: pointer; text-decoration: none; transition: 0.3s;
+}
+.btn-primary { background: var(--color-orange); color: white; }
+.btn-primary:hover { background: #e66f00; transform: translateY(-2px); }
+.btn-secondary { background: white; color: var(--color-teal); border: 2px solid white; }
+.btn-secondary:hover { background: #f0f0f0; }
+.btn-leermas { background: #E0F2F1; color: var(--color-teal); border-radius: 8px; margin: 0 20px 20px; width: fit-content; }
+.btn-leermas:hover { background: var(--color-teal); color: white; }
+.whatsapp-btn { background-color: #25D366; color: white; }
+
+/* --- 6. CONTACTO --- */
+.contact-layout {
+    display: grid; grid-template-columns: 1fr; gap: 30px;
+    max-width: 1000px; margin: 40px auto;
+}
+@media (min-width: 768px) { .contact-layout { grid-template-columns: 1fr 1.5fr; } }
+
+.contact-info-box {
+    background-color: var(--color-teal); color: white;
+    padding: 40px; border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 137, 123, 0.2);
+}
+.contact-info-item { display: flex; gap: 15px; margin-bottom: 25px; align-items: flex-start; }
+.form-card-modern {
+    background: white; padding: 40px; border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #eee;
+}
+form label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--color-dark); }
+form input, form textarea {
+    width: 100%; padding: 12px; margin-bottom: 20px;
+    border: 1px solid #ddd; border-radius: 8px;
+    font-family: var(--font-nunito); font-size: 1rem;
+}
 form button[type="submit"] {
-    background-color: var(--color-orange);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 30px;
-    cursor: pointer;
-    width: 100%;
-    transition: background 0.3s;
+    width: 100%; padding: 15px; background: var(--color-teal); color: white;
+    font-weight: bold; border-radius: 8px; border: none; cursor: pointer;
 }
-
-form button[type="submit"]:hover { background-color: #e66f00; }
-
-#formStatus { margin-top: 15px; text-align: center; font-weight: bold; }
 
 /* --- 7. FOOTER --- */
-footer {
-  background: #263238; 
-  color: white;
-  padding: 60px 24px 20px;
-  margin-top: 60px;
-  font-family: var(--font-nunito);
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-footer h3 { color: var(--color-orange); margin-bottom: 20px; }
-footer h4 { color: white; margin-bottom: 20px; font-weight: bold; }
-footer a { color: #B0BEC5; display: block; margin-bottom: 10px; }
-footer a:hover { color: white; text-decoration: underline; }
-footer p { color: #B0BEC5; }
+footer { background: #263238; color: #B0BEC5; padding: 60px 24px 20px; margin-top: auto; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+footer h3, footer h4 { color: white; margin-bottom: 20px; }
+footer a { display: block; margin-bottom: 10px; color: #B0BEC5; }
 
 /* --- 8. RESPONSIVE --- */
 @media (max-width: 768px) {
   header { padding: 10px 20px; }
-  
   .nav-links {
-    display: none; 
-    flex-direction: column;
-    position: absolute;
-    top: 80px; left: 0; width: 100%;
-    background: white;
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
+    display: none; flex-direction: column;
+    position: absolute; top: 80px; left: 0; width: 100%;
+    background: white; padding: 20px; border-bottom: 1px solid #ddd;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
-  
-  .nav-links a { 
-      font-size: 18px; 
-      padding: 15px 0; 
-      display: block; 
-      text-align: center; 
-      border-bottom: 1px solid #f0f0f0;
-  }
+  .nav-links a { font-size: 18px; padding: 15px 0; display: block; text-align: center; border-bottom: 1px solid #f0f0f0; }
   .hamburger { display: block; }
+  .hero h1 { font-size: 2rem; }
 }

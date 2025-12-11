@@ -4,70 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Involúcrate - Fundazoe</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script defer src="js/main.js"></script>
     <style>
-        .donation-card {
-            border-top: 5px solid var(--color-orange);
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(245, 124, 0, 0.15);
-        }
-        .concept {
-            text-transform: uppercase; letter-spacing: 2px; font-size: 14px;
-            font-weight: bold; margin-bottom: 10px; display: block;
-        }
+        .card { padding: 40px 30px; text-align: center; height: 100%; justify-content: space-between; }
+        .concept { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; display: block; }
+        .btn-card { padding: 12px 30px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; margin-top: auto; }
+        .card-donacion { border-top: 6px solid var(--color-orange); }
+        .card-alianza { border-top: 6px solid var(--color-teal); }
+        .card-voluntariado { border-top: 6px solid #333; }
+        .btn-orange { background-color: var(--color-orange); color: white; }
+        .btn-teal { background-color: var(--color-teal); color: white; }
+        .btn-dark { border: 2px solid #333; color: #333; }
+        .btn-dark:hover { background-color: #333; color: white; }
     </style>
 </head>
 <body>
-
     <header>
         <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Logo"></a></div>
         <div class="hamburger" onclick="toggleMenu()">☰</div>
         <nav class="nav-links" id="navLinks">
             <a href="index.html">Inicio</a>
+            <a href="sobre-nosotros.html">Nosotros</a>
             <a href="programas.html">Programas</a>
             <a href="recursos.html">Recursos</a>
+            <a href="involucrate.html" style="color: var(--color-orange);">Involúcrate</a>
             <a href="contacto.html" class="btn-cta">Pedir Ayuda</a>
         </nav>
     </header>
 
-    <section class="hero" style="background-color: var(--color-teal); background-image: none; height: 50vh;">
+    <section class="hero" style="background-image: linear-gradient(rgba(0, 50, 70, 0.7), rgba(0, 20, 40, 0.8)), url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=1920&auto=format&fit=crop');">
         <div class="hero-content">
             <h1>Tu aporte reescribe historias</h1>
-            <p>"La mies es mucha y los obreros pocos." Descubre cómo tus manos, tus recursos o tu influencia pueden acelerar la restauración.</p>
+            <p>Descubre cómo tus manos pueden acelerar la restauración.</p>
         </div>
     </section>
 
     <section class="section bg-light">
         <div class="grid-cards">
-            
-            <div class="card donation-card">
+            <div class="card card-donacion">
                 <span class="concept" style="color: var(--color-orange);">Sembrar</span>
                 <h2>Donaciones</h2>
-                <p>Tu donación no es un gasto, es una inversión en el Reino. Sostenemos terapias y ayuda social gracias a ti.</p>
-                <a href="contacto.html" class="btn btn-primary" style="margin-top: 20px;">Quiero Donar</a>
+                <p>Tu donación no es un gasto, es una inversión en el Reino. Sostenemos terapias gracias a ti.</p>
+                <a href="donar.html" class="btn-card btn-orange">Quiero Donar</a>
             </div>
-
-            <div class="card" style="border-top-color: var(--color-teal);">
+            <div class="card card-alianza">
                 <span class="concept" style="color: var(--color-teal);">Estratégico</span>
                 <h2>Alianzas</h2>
-                <p>Buscamos iglesias, empresas y fundaciones para ampliar nuestro alcance. Si representas a una organización, hagamos equipo.</p>
-                <a href="contacto.html" class="btn btn-secondary" style="background:var(--color-teal); margin-top: 20px;">Contactar Alianza</a>
+                <p>Buscamos iglesias y empresas para ampliar nuestro alcance. Hagamos equipo.</p>
+                <a href="contacto.html" class="btn-card btn-teal">Contactar Alianza</a>
             </div>
-
-            <div class="card" style="border-top-color: #333;">
+            <div class="card card-voluntariado">
                 <span class="concept" style="color: #333;">Servicio</span>
                 <h2>Voluntariado</h2>
-                <p>Ya sea con tu profesión (psicólogos, abogados) o con tu tiempo y oración, hay un lugar para ti en la familia.</p>
-                <a href="contacto.html" class="btn btn-secondary" style="border-color:#333; color:#333; margin-top: 20px;">Quiero Servir</a>
+                <p>Pon tu profesión o tiempo al servicio de la restauración.</p>
+                <a href="contacto.html" class="btn-card btn-dark">Quiero Servir</a>
             </div>
-
         </div>
     </section>
 
-    <footer><p>© 2025 Fundación Fundazoe.</p></footer>
-    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-<script defer src="js/main.js"></script>
-</body>
+    <footer>
+        <div class="footer-grid">
+            <div><h3 style="color: var(--color-orange);">Fundazoe</h3><p>Transformando vidas.</p></div>
+            <div><h4>Enlaces</h4><a href="programas.html">Programas</a><a href="donar.html">Donar</a></div>
+            <div><h4>Contacto</h4><p>+57 300 000 0000</p></div>
+        </div>
+        <div style="margin-top: 40px; border-top: 1px solid #37474F; padding-top: 20px; text-align: center; font-size: 14px;"><p>© 2025 Fundación Fundazoe.</p></div>
+    </footer>
 </body>
 </html>

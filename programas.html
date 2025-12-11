@@ -4,31 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programas - Fundazoe</title>
-    <link rel="stylesheet" href="styles.css">
-    </head>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script defer src="js/main.js"></script>
+</head>
 <body>
     <header>
         <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Logo"></a></div>
         <div class="hamburger" onclick="toggleMenu()">☰</div>
         <nav class="nav-links" id="navLinks">
             <a href="index.html">Inicio</a>
+            <a href="sobre-nosotros.html">Nosotros</a>
             <a href="programas.html" style="color: var(--color-orange);">Programas</a>
             <a href="recursos.html">Recursos</a>
+            <a href="involucrate.html">Involúcrate</a>
             <a href="contacto.html" class="btn-cta">Pedir Ayuda</a>
         </nav>
     </header>
 
-    <section class="section bg-light" style="margin-top: 80px;">
-        <h2 style="text-align: center;">Nuestros Programas</h2>
+    <section class="section bg-light" style="margin-top: 60px;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2>Nuestros Programas</h2>
+            <p style="color: #666;">Rutas de restauración diseñadas para atender cuerpo, alma y espíritu.</p>
+        </div>
         <div id="programas-container" class="grid-cards">
-            <p style="text-align:center; width:100%;">⏳ Cargando programas...</p>
+            <p style="text-align:center; width:100%; color:#666;">⏳ Cargando programas...</p>
         </div>
     </section>
 
-    <footer><p>© 2025 Fundación Fundazoe.</p></footer>
-    
-    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script defer src="js/main.js"></script>
+    <footer>
+        <div class="footer-grid">
+            <div><h3 style="color: var(--color-orange);">Fundazoe</h3><p>Transformando vidas.</p></div>
+            <div><h4>Enlaces</h4><a href="sobre-nosotros.html">Quiénes Somos</a><a href="recursos.html">Recursos</a></div>
+            <div><h4>Contacto</h4><p>+57 300 000 0000</p></div>
+        </div>
+        <div style="margin-top: 40px; border-top: 1px solid #37474F; padding-top: 20px; text-align: center; font-size: 14px;"><p>© 2025 Fundación Fundazoe.</p></div>
+    </footer>
 </body>
 </html>

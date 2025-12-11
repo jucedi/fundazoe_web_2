@@ -4,21 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fundazoe - Transformando Vidas</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script defer src="js/main.js"></script>
 </head>
 <body>
-
     <header>
-        <div class="logo">
-            <a href="index.html">
-                <img src="images/logo.png" alt="Fundazoe Logo">
-            </a>
-        </div>
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Logo"></a></div>
         <div class="hamburger" onclick="toggleMenu()">☰</div>
         <nav class="nav-links" id="navLinks">
+            <a href="index.html" style="color: var(--color-orange);">Inicio</a>
             <a href="sobre-nosotros.html">Nosotros</a>
             <a href="programas.html">Programas</a>
             <a href="recursos.html">Recursos</a>
@@ -29,48 +26,52 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Una Luz de <span style="color: var(--color-orange)">Esperanza</span> frente a la Adicción</h1>
-            <p>Transformamos vidas a través del amor y la verdad de Jesucristo. Un camino de restauración integral donde la fe es nuestra fuente inagotable.</p>
+            <h1>Restaurando Vidas con <span style="color: var(--color-orange)">Esperanza</span></h1>
+            <p>Un camino de transformación integral basado en la fe y el amor.</p>
             <div style="margin-top: 30px;">
-                <a href="contacto.html" class="btn btn-primary">Solicitar Ayuda</a>
-                <a href="programas.html" class="btn btn-secondary">Ver Programas</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="grid-2">
-            <div style="height: 400px; background: url('images/fondo.jpg') center/cover; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);"></div>
-            <div>
-                <h2>¿La batalla parece imposible?</h2>
-                <p style="font-size: 1.1rem; color: #555;">
-                    Sabemos que luchar contra las adicciones es enfrentar una tormenta que afecta el cuerpo, la mente y el espíritu. 
-                    <br><br>
-                    Pero no tienes que caminar solo. En <strong>Fundazoe</strong>, entendemos tu dolor y creemos firmemente que ninguna vida está perdida cuando se encuentra con la Verdad.
-                </p>
+                <a href="programas.html" class="btn-secondary">Ver Programas</a>
+                <a href="donar.html" class="btn-primary">Donar Ahora</a>
             </div>
         </div>
     </section>
 
     <section class="section bg-light">
-        <h2 style="text-align: center;">Un Plan de Acción para la Restauración</h2>
-        <p style="text-align: center; color: #666; max-width: 600px; margin: 0 auto 40px auto;">
-            Profesionalismo terapéutico + Principios de fe.
-        </p>
-
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2>Nuestro Impacto</h2>
+            <p style="color: #666;">Trabajamos en tres pilares fundamentales.</p>
+        </div>
         <div class="grid-cards">
-            <div class="card">
-                <span class="card-icon">📖</span>
-                <h3>Consejería Bíblica</h3>
-                <p>Integramos una perspectiva profesional con el enfoque bíblico para generar conciencia y sanidad interior.</p>
+            <div class="impact-card">
+                <div class="icon-circle icon-teal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </div>
+                <h3>Educación</h3>
+                <p>Capacitación y consejería bíblica para el desarrollo personal.</p>
             </div>
+            <div class="impact-card">
+                <div class="icon-circle icon-orange">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                </div>
+                <h3>Bienestar</h3>
+                <p>Atención integral a necesidades físicas y emocionales.</p>
             </div>
+            <div class="impact-card">
+                <div class="icon-circle icon-teal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h3>Comunidad</h3>
+                <p>Grupos de apoyo para fortalecer lazos y crecer juntos.</p>
+            </div>
+        </div>
     </section>
 
-    <footer><p>© 2025 Fundación Fundazoe.</p></footer>
-    
-    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script defer src="js/main.js"></script>
+    <footer>
+        <div class="footer-grid">
+            <div><h3 style="color: var(--color-orange);">Fundazoe</h3><p>Transformando vidas con principios eternos.</p></div>
+            <div><h4>Enlaces</h4><a href="programas.html">Programas</a><a href="recursos.html">Recursos</a></div>
+            <div><h4>Contacto</h4><p>+57 300 000 0000</p></div>
+        </div>
+        <div style="margin-top: 40px; border-top: 1px solid #37474F; padding-top: 20px; text-align: center; font-size: 14px;"><p>© 2025 Fundación Fundazoe.</p></div>
+    </footer>
 </body>
 </html>
